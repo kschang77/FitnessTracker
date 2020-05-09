@@ -1,19 +1,6 @@
-# Welcome to FitnessTracker 👋
-![Version](https://img.shields.io/badge/version-0.9-blue.svg?cacheSeconds=2592000)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](#)
+# FitnessTracker
 
-> A Backend reverse engineering assignment for a pre-written frontend that is used to track fitness workouts and specific exercises in attempt to quantify self. 
-
-## Demo Video
-
-made by Mahi
-
-![Video here](Fitness%20Tracker.mp4)
-
-
-## WARNING
-
-The database needs to be seeded with the seeders/seed.js script, which also removes any manually added data. 
+Implementing a Node.js / MongoDB-Mongoose / Express.js backend to a written front-end
 
 
 ## Reverse Engineering
@@ -223,22 +210,3 @@ const workoutSchema = new Schema({
 
 The requirement for the field was removed as redundant when a default value was automatically set.  
 
-
-## Author
-
-Front-end was written by unknown authors for Trilogy Education, used with permission. 
-
-Backend is by
-
-👤 **Kasey Chang**
-
-* Website: https://www.linkedin.com/in/kasey-chang-0932b332/
-* Github: [@kschang77](https://github.com/kschang77)
-
-## Show your support
-
-Give a ⭐️ if this project helped you!
-
-
-***
-_This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_

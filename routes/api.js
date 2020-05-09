@@ -42,14 +42,16 @@ router.put("/api/workouts/:id", (req, res) => {
 
 // /api/workouts  (POST)  / CREATE
 router.post("/api/workouts", (req, res) => {
-  const newWorkoutObj = new Workout(req.body);
+  const newWorkoutObj = new Workout();
   newWorkoutObj.save(err => {
     if (err) return res.status(500).send(err);
+    console.log("newWorkoutObj =", newWorkoutObj)
     return res.status(200).send(newWorkoutObj)
   })
 
-  // Workout.create(body)
+  // Workout.create()
   //   .then(dbWorkout => {
+  //     console.log("dbWorkout =", dbWorkout)
   //     res.json(dbWorkout);
   //   })
   //   .catch(err => {

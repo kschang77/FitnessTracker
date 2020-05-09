@@ -5,7 +5,8 @@ const Schema = mongoose.Schema;
 const workoutSchema = new Schema({
   day: {
     type: Date,
-    required: "Enter a date for workout"
+    required: "Enter a date for workout",
+    default: Date.now
   },
   exercises: [
     {
