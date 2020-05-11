@@ -4,16 +4,10 @@
 
 > A Backend reverse engineering assignment for a pre-written frontend that is used to track fitness workouts and specific exercises in attempt to quantify self. 
 
-## Demo Video
-
-made by Mahi
-
-![Video here](Fitness%20Tracker.mp4)
-
 
 ## WARNING
 
-The database needs to be seeded with the seeders/seed.js script, which also removes any manually added data. 
+The database may need to be seeded with the seeders/seed.js script, which also removes any manually added data. 
 
 
 ## Reverse Engineering
@@ -222,6 +216,41 @@ const workoutSchema = new Schema({
 ```
 
 The requirement for the field was removed as redundant when a default value was automatically set.  
+
+### Final bug squashed
+
+A persistent error that was discovered by class and I was that a field, totalDuration, was blank or NaN. Analysis of workout.js shows that it should have been passed back as a result. Yet it is clearly a "derived" field, not a "true" field data. 
+
+A careful study of Mongoose documentation [yielded "virtuals"](https://mongoosejs.com/docs/tutorials/virtuals.html) that can be used to achieve this goal: calculate total exercise durations without saving them in the table. 
+
+First, the option to pass virtual as part of JSON response must be added to the model definition, workout.js
+
+```
+const opts = { toJSON: { virtuals: true } };
+```
+
+Then the option was used as a part of the schema at the end:
+
+```
+      distance: Number
+    }
+  ]
+}, opts);
+```
+
+Finally, **reduce** function was used as an accumulator to sum up the exercise durations into the totalDuration field. 
+
+```
+workoutSchema.virtual('totalDuration').get(function () {
+  // reduce is basically an accumulator, and the
+  //ending ,0 means we start from 0
+  return this.exercises.reduce((ttl, ex) => {
+    return ttl + ex.duration;
+  }, 0)
+})
+```
+
+The code was tested locally and judged to be working, so it was uploaded to Heroku. 
 
 
 ## Author

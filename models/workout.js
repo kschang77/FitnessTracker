@@ -31,7 +31,6 @@ const workoutSchema = new Schema({
       sets: Number
       ,
       distance: Number
-
     }
   ]
 }, opts);
